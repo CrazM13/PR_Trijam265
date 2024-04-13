@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://cm6fu7y4x0i75"]
+
+[ext_resource type="Texture2D" uid="uid://rhidsbtddi1t" path="res://Assets/PE_Sprites/Cooked_Crumbs.png" id="1_sddwb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_nsu4e"]
+particles_animation = true
+particles_anim_h_frames = 2
+particles_anim_v_frames = 2
+particles_anim_loop = false
+
+[sub_resource type="Curve" id="Curve_plccs"]
+_data = [Vector2(0, 0.406593), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_umqaa"]
+curve = SubResource("Curve_plccs")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0n17m"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, 0, 0)
+spread = 71.292
+initial_velocity_min = 70.0
+initial_velocity_max = 70.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_umqaa")
+anim_offset_max = 1.0
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+material = SubResource("CanvasItemMaterial_nsu4e")
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_0n17m")
+texture = ExtResource("1_sddwb")
+explosiveness = 1.0
