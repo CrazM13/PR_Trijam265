@@ -32,7 +32,9 @@ anim_offset_max = 1.0
 
 [node name="GPUParticles2D" type="GPUParticles2D"]
 material = SubResource("CanvasItemMaterial_nsu4e")
+emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_0n17m")
 texture = ExtResource("1_sddwb")
+one_shot = true
 explosiveness = 1.0

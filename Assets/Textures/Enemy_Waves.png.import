@@ -2,7 +2,11 @@
 
 importer="texture"
 type="CompressedTexture2D"
+<<<<<<< Updated upstream
 uid="uid://dcowg0xr02vex"
+=======
+uid="uid://dcn0yftjx2jak"
+>>>>>>> Stashed changes
 path="res://.godot/imported/Enemy_Waves.png-e9e53d263133d877e83f463e6741c35a.ctex"
 metadata={
 "vram_texture": false
