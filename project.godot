@@ -12,7 +12,7 @@ config_version=5
 
 config/name="PR_Trijam265"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Textures/Icon_dino_nuggy.svg"
 
 [display]
 
