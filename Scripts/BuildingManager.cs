@@ -19,7 +19,7 @@ public partial class BuildingManager : Node {
 
 		if (this.currentBuildingCount <= 0) {
 			// WIN
-			sceneManager.ReloadScene();
+			sceneManager.LoadScene("res://Scenes/Main_Menu.tscn");
 		}
 	}
 

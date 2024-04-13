@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cjuiqwdg6dpy"]
+[gd_scene load_steps=21 format=3 uid="uid://cjuiqwdg6dpy"]
 
 [ext_resource type="PackedScene" uid="uid://ct2fwm633mrht" path="res://Assets/Prefabs/building.tscn" id="1_0cy0m"]
 [ext_resource type="PackedScene" uid="uid://cgs43sj0jst55" path="res://Assets/Prefabs/scene_transition.tscn" id="2_0ebi4"]
@@ -15,6 +15,9 @@
 [ext_resource type="Script" path="res://Scripts/PlayerMicrowaveEmitter.cs" id="13_tpyuf"]
 [ext_resource type="PackedScene" uid="uid://d2nhui0lv81ea" path="res://Assets/Prefabs/pedestrian.tscn" id="14_m0kp4"]
 [ext_resource type="PackedScene" uid="uid://b2lx0awscytev" path="res://Assets/Prefabs/microwave_manager.tscn" id="14_t55xj"]
+[ext_resource type="Script" path="res://Scripts/HealthBar.cs" id="16_b6fu7"]
+[ext_resource type="Texture2D" uid="uid://cddkuny4c06l1" path="res://Assets/Textures/Health_Bar_UI.png" id="16_l0rl1"]
+[ext_resource type="Texture2D" uid="uid://cqga8favvj8q7" path="res://Assets/Textures/Health_Bar_UI_filled.png" id="17_rtn1i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74s55"]
 size = Vector2(4000, 20)
@@ -83,6 +86,9 @@ position = Vector2(655, 532)
 
 [node name="SceneTransition" parent="." instance=ExtResource("2_0ebi4")]
 
+[node name="CanvasModulate" parent="SceneTransition/CanvasLayer" index="1"]
+color = Color(1, 1, 1, 1)
+
 [node name="BuildingManager" type="Node" parent="." node_paths=PackedStringArray("sceneManager", "Target")]
 script = ExtResource("3_jmiuj")
 sceneManager = NodePath("../SceneTransition")
@@ -110,5 +116,15 @@ autoplay = true
 script = ExtResource("9_qpua8")
 
 [node name="Pedestrian" parent="." instance=ExtResource("14_m0kp4")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("target")]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_over = ExtResource("16_l0rl1")
+texture_progress = ExtResource("17_rtn1i")
+script = ExtResource("16_b6fu7")
+target = NodePath("../../CharacterBody2D")
 
 [editable path="SceneTransition"]
