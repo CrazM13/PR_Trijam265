@@ -11,8 +11,13 @@ public partial class ProjectileMicrowave : AnimatableBody2D {
 	public override void _PhysicsProcess(double delta) {
 		base._PhysicsProcess(delta);
 
-		if (MoveAndCollide(Direction * speed) != null) {
+		KinematicCollision2D collision = MoveAndCollide(Direction * speed);
+		if (collision != null) {
 			Pool.Despawn(this);
+
+			if (collision.GetCollider() is Damageable damageable) {
+				damageable.OnDamage(0.1f);
+			}
 		}
 
 	}
