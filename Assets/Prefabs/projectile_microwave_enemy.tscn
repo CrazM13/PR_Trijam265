@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://hnqmo78ppiiq"]
 
 [ext_resource type="Script" path="res://Scripts/ProjectileMicrowave.cs" id="1_1gokv"]
-[ext_resource type="Texture2D" uid="uid://dcowg0xr02vex" path="res://Assets/Textures/Enemy_Waves.png" id="2_dilr4"]
+[ext_resource type="Texture2D" uid="uid://dod66q2byhm8l" path="res://Assets/Textures/Enemy_Waves.png" id="2_dilr4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_vsell"]
 radius = 16.0
