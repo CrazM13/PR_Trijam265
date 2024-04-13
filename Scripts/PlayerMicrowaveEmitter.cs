@@ -4,6 +4,7 @@ using System;
 public partial class PlayerMicrowaveEmitter : Node2D {
 
 	[Export] private MicrowaveManager microwaveManager;
+	[Export] private AudioManager audioManager;
 
 	private bool isMousePressed = false;
 
@@ -18,6 +19,7 @@ public partial class PlayerMicrowaveEmitter : Node2D {
 			if (!isMousePressed) {
 				microwaveManager.Fire(this.GlobalPosition, this.Transform.X);
 				isMousePressed = true;
+				audioManager.PlayLocal(2, GlobalPosition);
 			}
 		} else {
 			isMousePressed = false;

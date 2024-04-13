@@ -24,6 +24,7 @@ public partial class PlayerController : Damageable {
 	private void ReactToDamage() {
 		if (Health <= 0) {
 			sceneManager.ReloadScene();
+			audioManager.PlayLocal(1, GlobalPosition);
 		}
 	}
 
@@ -48,7 +49,7 @@ public partial class PlayerController : Damageable {
 		}
 
 		if (Input.IsActionJustPressed("ui_accept")) {
-			//audioManager.PlayGlobal(0);
+			audioManager.PlayLocal(3, GlobalPosition);
 		}
 
 		Velocity = velocity;

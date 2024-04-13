@@ -5,6 +5,7 @@ public partial class PedestrianAI : Damageable {
 
 	[Export] private Texture2D[] buildingSprites;
 	[Export] private Sprite2D displaySprite;
+	[Export] private AudioManager audioManager;
 
 	[Export] private float movementSpeed;
 	[Export] private float decisionRate;
@@ -84,13 +85,17 @@ public partial class PedestrianAI : Damageable {
 					else direction = 1;
 					break;
 			}
-        }
+
+			if (direction != 0) audioManager.PlayLocal(4, GlobalPosition);
+		}
 
 		if (direction != 0) {
 			if (MoveAndCollide(Vector2.Right * direction * movementSpeed) != null) {
 				direction *= -1;
 			}
 		}
+
+		
 	}
 
 }

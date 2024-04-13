@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cjuiqwdg6dpy"]
+[gd_scene load_steps=26 format=3 uid="uid://cjuiqwdg6dpy"]
 
 [ext_resource type="PackedScene" uid="uid://ct2fwm633mrht" path="res://Assets/Prefabs/building.tscn" id="1_0cy0m"]
 [ext_resource type="PackedScene" uid="uid://cgs43sj0jst55" path="res://Assets/Prefabs/scene_transition.tscn" id="2_0ebi4"]
@@ -11,10 +11,15 @@
 [ext_resource type="PackedScene" uid="uid://bc1v4rsk6d8q3" path="res://Assets/Prefabs/local_audio.tscn" id="7_bytc3"]
 [ext_resource type="AudioStream" uid="uid://d4jhexmcxm7vr" path="res://Assets/Audio/PotsAndPans.wav" id="8_db5ed"]
 [ext_resource type="Script" path="res://Scripts/PersistantMusic.cs" id="9_qpua8"]
+[ext_resource type="AudioStream" uid="uid://cu7ufeinqnvyw" path="res://Assets/Audio/Bite.wav" id="10_6kvuu"]
+[ext_resource type="AudioStream" uid="uid://dmk7mwoonijst" path="res://Assets/Audio/MicrowaveDing.wav" id="11_s3gag"]
+[ext_resource type="AudioStream" uid="uid://ci3xvqysw0c86" path="res://Assets/Audio/MicrowaveHum.wav" id="12_b0clm"]
 [ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="12_bm7j8"]
+[ext_resource type="AudioStream" uid="uid://btawihcvjxb5a" path="res://Assets/Audio/Roar.wav" id="13_t1uxh"]
 [ext_resource type="Script" path="res://Scripts/PlayerMicrowaveEmitter.cs" id="13_tpyuf"]
 [ext_resource type="PackedScene" uid="uid://d2nhui0lv81ea" path="res://Assets/Prefabs/pedestrian.tscn" id="14_m0kp4"]
 [ext_resource type="PackedScene" uid="uid://b2lx0awscytev" path="res://Assets/Prefabs/microwave_manager.tscn" id="14_t55xj"]
+[ext_resource type="AudioStream" uid="uid://d1erqhqgucdcj" path="res://Assets/Audio/Voices.wav" id="14_wer21"]
 [ext_resource type="Script" path="res://Scripts/HealthBar.cs" id="16_b6fu7"]
 [ext_resource type="Texture2D" uid="uid://cddkuny4c06l1" path="res://Assets/Textures/Health_Bar_UI.png" id="16_l0rl1"]
 [ext_resource type="Texture2D" uid="uid://cqga8favvj8q7" path="res://Assets/Textures/Health_Bar_UI_filled.png" id="17_rtn1i"]
@@ -60,20 +65,22 @@ texture = ExtResource("2_hhwbw")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_prm7q")
 
-[node name="Node2D" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("microwaveManager")]
+[node name="Node2D" type="Node2D" parent="CharacterBody2D" node_paths=PackedStringArray("microwaveManager", "audioManager")]
 position = Vector2(118, -98)
 script = ExtResource("13_tpyuf")
 microwaveManager = NodePath("MicrowaveManager")
+audioManager = NodePath("../../AudioManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Node2D"]
 texture = ExtResource("2_hhwbw")
 
 [node name="MicrowaveManager" parent="CharacterBody2D/Node2D" instance=ExtResource("14_t55xj")]
 
-[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D"]
+[node name="RayCast2D" type="RayCast2D" parent="CharacterBody2D" node_paths=PackedStringArray("audioManager")]
 target_position = Vector2(0, 300)
 collision_mask = 24
 script = ExtResource("5_3nf48")
+audioManager = NodePath("../../AudioManager")
 
 [node name="Building" parent="." instance=ExtResource("1_0cy0m")]
 position = Vector2(1042, 532)
@@ -96,7 +103,7 @@ Target = NodePath("../CharacterBody2D")
 
 [node name="AudioManager" type="Node" parent="." node_paths=PackedStringArray("globalAudioPlayers", "localAudioPlayers")]
 script = ExtResource("4_ilrne")
-audioStreams = Array[AudioStream]([])
+audioStreams = Array[AudioStream]([ExtResource("10_6kvuu"), ExtResource("11_s3gag"), ExtResource("12_b0clm"), ExtResource("13_t1uxh"), ExtResource("14_wer21")])
 globalAudioPlayers = NodePath("GlobalAudioPool")
 localAudioPlayers = NodePath("LocalAudioPool")
 
@@ -115,7 +122,8 @@ stream = ExtResource("8_db5ed")
 autoplay = true
 script = ExtResource("9_qpua8")
 
-[node name="Pedestrian" parent="." instance=ExtResource("14_m0kp4")]
+[node name="Pedestrian" parent="." node_paths=PackedStringArray("audioManager") instance=ExtResource("14_m0kp4")]
+audioManager = NodePath("../AudioManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

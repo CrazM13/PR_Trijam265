@@ -44,6 +44,7 @@ public partial class Building : Damageable {
 			if (CurrentState == BuildingStates.NORMAL || CurrentState == BuildingStates.COOKED) {
 				CurrentState = BuildingStates.EATEN;
 				displaySprite.Texture = buildingSprites[(int) CurrentState];
+				this.Manager.ConsumeBuilding();
 			}
 		}
 	}
