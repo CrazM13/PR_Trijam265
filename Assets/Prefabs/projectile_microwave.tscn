@@ -8,7 +8,7 @@ radius = 16.0
 
 [node name="ProjectileMicrowave" type="AnimatableBody2D"]
 collision_layer = 2
-collision_mask = 9
+collision_mask = 25
 sync_to_physics = false
 script = ExtResource("1_23exr")
 speed = 2.0

@@ -130,6 +130,7 @@ autoplay = true
 script = ExtResource("9_qpua8")
 
 [node name="Pedestrian" parent="." node_paths=PackedStringArray("audioManager") instance=ExtResource("14_m0kp4")]
+position = Vector2(151, 628)
 audioManager = NodePath("../AudioManager")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
