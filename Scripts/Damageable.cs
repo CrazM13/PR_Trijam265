@@ -14,7 +14,7 @@ public partial class Damageable : CharacterBody2D {
 	public void OnDamageReceived(float damage) {
 		Health -= damage;
 
-		EmitSignal(SignalName.OnDamage, damage);
+		EmitSignal(SignalName.OnDamage);
 	}
 
 }

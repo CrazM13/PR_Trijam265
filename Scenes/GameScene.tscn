@@ -1,7 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://cjuiqwdg6dpy"]
+[gd_scene load_steps=14 format=3 uid="uid://cjuiqwdg6dpy"]
+
+[ext_resource type="PackedScene" uid="uid://ct2fwm633mrht" path="res://Assets/Prefabs/building.tscn" id="1_0cy0m"]
+[ext_resource type="PackedScene" uid="uid://cgs43sj0jst55" path="res://Assets/Prefabs/scene_transition.tscn" id="2_0ebi4"]
+[ext_resource type="Texture2D" uid="uid://d18vetfhyavr" path="res://icon.svg" id="2_hhwbw"]
+[ext_resource type="Script" path="res://Scripts/BuildingManager.cs" id="3_jmiuj"]
+[ext_resource type="Script" path="res://Scripts/AudioManager.cs" id="4_ilrne"]
+[ext_resource type="Script" path="res://Scripts/ProjectilePool.cs" id="5_l3vmq"]
+[ext_resource type="PackedScene" uid="uid://dia06r61losqp" path="res://Assets/Prefabs/global_audio.tscn" id="6_2bibe"]
+[ext_resource type="PackedScene" uid="uid://bc1v4rsk6d8q3" path="res://Assets/Prefabs/local_audio.tscn" id="7_bytc3"]
+[ext_resource type="AudioStream" uid="uid://d4jhexmcxm7vr" path="res://Assets/Audio/PotsAndPans.wav" id="8_db5ed"]
+[ext_resource type="Script" path="res://Scripts/PersistantMusic.cs" id="9_qpua8"]
+[ext_resource type="Script" path="res://Scripts/PedestrianAI.cs" id="11_5cass"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_74s55"]
 size = Vector2(4000, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6adrk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -22,3 +36,62 @@ shape = SubResource("RectangleShape2D_74s55")
 position = Vector2(1153, 2)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_74s55")
+
+[node name="Building" parent="." instance=ExtResource("1_0cy0m")]
+position = Vector2(1042, 532)
+
+[node name="Building2" parent="." instance=ExtResource("1_0cy0m")]
+position = Vector2(853, 532)
+
+[node name="Building3" parent="." instance=ExtResource("1_0cy0m")]
+position = Vector2(655, 532)
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_0ebi4")]
+
+[node name="BuildingManager" type="Node" parent="." node_paths=PackedStringArray("sceneManager", "Target")]
+script = ExtResource("3_jmiuj")
+sceneManager = NodePath("../SceneTransition")
+Target = NodePath("../Pedestrian")
+
+[node name="AudioManager" type="Node" parent="." node_paths=PackedStringArray("globalAudioPlayers", "localAudioPlayers")]
+script = ExtResource("4_ilrne")
+audioStreams = Array[AudioStream]([])
+globalAudioPlayers = NodePath("GlobalAudioPool")
+localAudioPlayers = NodePath("LocalAudioPool")
+
+[node name="GlobalAudioPool" type="Node" parent="AudioManager"]
+script = ExtResource("5_l3vmq")
+projectilePrefab = ExtResource("6_2bibe")
+maxObjects = 32
+
+[node name="LocalAudioPool" type="Node" parent="AudioManager"]
+script = ExtResource("5_l3vmq")
+projectilePrefab = ExtResource("7_bytc3")
+maxObjects = 32
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="AudioManager"]
+stream = ExtResource("8_db5ed")
+autoplay = true
+script = ExtResource("9_qpua8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(162, 209)
+texture = ExtResource("2_hhwbw")
+
+[node name="Pedestrian" type="CharacterBody2D" parent="." node_paths=PackedStringArray("displaySprite")]
+position = Vector2(151, 554)
+collision_layer = 16
+script = ExtResource("11_5cass")
+buildingSprites = Array[Texture2D]([ExtResource("2_hhwbw"), ExtResource("2_hhwbw"), ExtResource("2_hhwbw")])
+displaySprite = NodePath("Sprite2D")
+movementSpeed = 3.0
+decisionRate = 3.0
+startledMultiplier = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="Pedestrian"]
+texture = ExtResource("2_hhwbw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pedestrian"]
+shape = SubResource("RectangleShape2D_6adrk")
+
+[editable path="SceneTransition"]
