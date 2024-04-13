@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2lx0awscytev"]
+
+[ext_resource type="Script" path="res://Scripts/MicrowaveManager.cs" id="1_qbgpl"]
+[ext_resource type="PackedScene" uid="uid://b1hiakxp3n8m3" path="res://Assets/Prefabs/projectile_microwave.tscn" id="2_juvgv"]
+
+[node name="MicrowaveManager" type="Node"]
+script = ExtResource("1_qbgpl")
+projectilePrefab = ExtResource("2_juvgv")
+maxObjects = 32
