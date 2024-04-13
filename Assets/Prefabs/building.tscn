@@ -1,9 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://ct2fwm633mrht"]
+[gd_scene load_steps=10 format=3 uid="uid://ct2fwm633mrht"]
 
 [ext_resource type="Script" path="res://Scripts/Building.cs" id="1_huv8d"]
+[ext_resource type="Texture2D" uid="uid://03ium4hj54dt" path="res://Assets/Textures/TMPAssets/TMPB1.png" id="2_gxl2l"]
 [ext_resource type="Texture2D" uid="uid://d18vetfhyavr" path="res://icon.svg" id="2_nwf8f"]
+[ext_resource type="Texture2D" uid="uid://cw8ibk7hphre4" path="res://Assets/Textures/TMPAssets/TMPB2.png" id="3_30jp5"]
 [ext_resource type="Script" path="res://Scripts/EnemyMicrowaveEmitter.cs" id="3_n45y7"]
 [ext_resource type="PackedScene" uid="uid://b2lx0awscytev" path="res://Assets/Prefabs/microwave_manager.tscn" id="4_dfsck"]
+[ext_resource type="Texture2D" uid="uid://b3l7c06encqgc" path="res://Assets/Textures/TMPAssets/TMPB3.png" id="4_ildpb"]
 [ext_resource type="PackedScene" uid="uid://hnqmo78ppiiq" path="res://Assets/Prefabs/projectile_microwave_enemy.tscn" id="5_sr11d"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opl5d"]
@@ -12,12 +15,13 @@ size = Vector2(128, 256)
 [node name="Building" type="CharacterBody2D" node_paths=PackedStringArray("displaySprite", "microwave")]
 collision_layer = 8
 script = ExtResource("1_huv8d")
-buildingSprites = Array[Texture2D]([ExtResource("2_nwf8f"), ExtResource("2_nwf8f"), ExtResource("2_nwf8f")])
+buildingSprites = Array[Texture2D]([ExtResource("2_gxl2l"), ExtResource("3_30jp5"), ExtResource("4_ildpb")])
 displaySprite = NodePath("Sprite2D")
 microwave = NodePath("Microwave")
+maxHealth = 1.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_nwf8f")
+texture = ExtResource("2_gxl2l")
 region_enabled = true
 region_rect = Rect2(0, 0, 128, 256)
 

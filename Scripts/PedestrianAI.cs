@@ -21,11 +21,12 @@ public partial class PedestrianAI : Damageable {
 		EATEN = 2
 	}
 
-	private PedestrianStates currentState = PedestrianStates.NORMAL;
+	public PedestrianStates CurrentState { get; private set; } = PedestrianStates.NORMAL;
 
 	public override void _Ready() {
 		base._Ready();
 
+		this.Health = this.MaxHealth;
 		this.OnDamage += ReactionToDamage;
 
 		timeUntilDecision = decisionRate;
@@ -40,9 +41,9 @@ public partial class PedestrianAI : Damageable {
 
 		if (Health > 0 && Health > -100) {
 			Health = 0;
-			if (currentState == PedestrianStates.NORMAL) {
-				currentState = PedestrianStates.COOKED;
-				displaySprite.Texture = buildingSprites[(int) currentState];
+			if (CurrentState == PedestrianStates.NORMAL) {
+				CurrentState = PedestrianStates.COOKED;
+				displaySprite.Texture = buildingSprites[(int) CurrentState];
 			}
 		} else if (Health <= -100) {
 			Health = -100;

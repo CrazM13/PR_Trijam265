@@ -15,13 +15,14 @@ public partial class Building : Damageable {
 		EATEN = 2
 	}
 
-	private BuildingStates currentState = BuildingStates.NORMAL;
+	public BuildingStates CurrentState { get; private set; } = BuildingStates.NORMAL;
 
 	public override void _Ready() {
 		base._Ready();
 
 		GetTree().Root.GetChild(0).GetNode<BuildingManager>("BuildingManager").RegisterBuilding(this);
 
+		this.Health = this.MaxHealth;
 		this.OnDamage += ReactionToDamage;
 	}
 
@@ -34,15 +35,15 @@ public partial class Building : Damageable {
 	private void ReactionToDamage() {
 		if (Health > 0 && Health > -100) {
 			Health = 0;
-			if (currentState == BuildingStates.NORMAL) {
-				currentState = BuildingStates.COOKED;
-				displaySprite.Texture = buildingSprites[(int) currentState];
+			if (CurrentState == BuildingStates.NORMAL) {
+				CurrentState = BuildingStates.COOKED;
+				displaySprite.Texture = buildingSprites[(int) CurrentState];
 			}
 		} else if (Health <= -100) {
 			Health = -100;
-			if (currentState == BuildingStates.NORMAL || currentState == BuildingStates.COOKED) {
-				currentState = BuildingStates.EATEN;
-				displaySprite.Texture = buildingSprites[(int) currentState];
+			if (CurrentState == BuildingStates.NORMAL || CurrentState == BuildingStates.COOKED) {
+				CurrentState = BuildingStates.EATEN;
+				displaySprite.Texture = buildingSprites[(int) CurrentState];
 			}
 		}
 	}

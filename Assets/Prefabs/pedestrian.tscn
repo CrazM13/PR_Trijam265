@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2nhui0lv81ea"]
+
+[ext_resource type="Script" path="res://Scripts/PedestrianAI.cs" id="1_bajty"]
+[ext_resource type="Texture2D" uid="uid://d18vetfhyavr" path="res://icon.svg" id="2_ul7pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6adrk"]
+
+[node name="Pedestrian" type="CharacterBody2D" node_paths=PackedStringArray("displaySprite")]
+position = Vector2(151, 587)
+collision_layer = 16
+script = ExtResource("1_bajty")
+buildingSprites = Array[Texture2D]([ExtResource("2_ul7pe"), ExtResource("2_ul7pe"), ExtResource("2_ul7pe")])
+displaySprite = NodePath("Sprite2D")
+movementSpeed = 3.0
+decisionRate = 3.0
+startledMultiplier = 1.5
+maxHealth = 1.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ul7pe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6adrk")
