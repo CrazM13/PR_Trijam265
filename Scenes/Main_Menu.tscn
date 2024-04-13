@@ -1,27 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://b70kwa0cycay5"]
+[gd_scene load_steps=2 format=3 uid="uid://7k6lslesgl5g"]
 
 [ext_resource type="PackedScene" uid="uid://cgs43sj0jst55" path="res://Assets/Prefabs/scene_transition.tscn" id="2_womx1"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 0
+mouse_filter = 1
+
+[node name="SceneTransition" parent="." instance=ExtResource("2_womx1")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_right = 74.0
-offset_bottom = 101.0
+offset_right = 40.0
+offset_bottom = 40.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 1
 text = "Play
-"
-
-[node name="Controls" type="Button" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-text = "Controls
 "
 
 [node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
@@ -29,6 +28,8 @@ layout_mode = 2
 text = "Quit
 "
 
-[node name="SceneTransition" parent="." instance=ExtResource("2_womx1")]
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="SceneTransition" method="LoadScene" binds= ["res://Scenes/Main_Menu.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="SceneTransition" method="LoadScene" binds= ["res://Scenes/GameScene.tscn"]]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="SceneTransition" method="Quit"]
