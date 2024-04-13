@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="PR_Trijam265"
+run/main_scene="res://Scenes/Main_Menu.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
-config/icon="res://Assets/Textures/Icon_dino_nuggy.svg"
+config/icon="res://Assets/Textures/dino_icon.png"
+
+[display]
+
+window/stretch/mode="viewport"
 
 [dotnet]
 
