@@ -1,9 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://cjuiqwdg6dpy"]
+[gd_scene load_steps=28 format=3 uid="uid://cjuiqwdg6dpy"]
 
 [ext_resource type="PackedScene" uid="uid://ct2fwm633mrht" path="res://Assets/Prefabs/building.tscn" id="1_0cy0m"]
+[ext_resource type="Texture2D" uid="uid://tpsm6oiqqwtj" path="res://Assets/Textures/Background.png" id="1_dfa6v"]
 [ext_resource type="PackedScene" uid="uid://cgs43sj0jst55" path="res://Assets/Prefabs/scene_transition.tscn" id="2_0ebi4"]
-[ext_resource type="Texture2D" uid="uid://d18vetfhyavr" path="res://icon.svg" id="2_hhwbw"]
+[ext_resource type="Texture2D" uid="uid://cx4p3b6kc6v2w" path="res://Assets/Textures/Player.png" id="2_kclco"]
 [ext_resource type="Script" path="res://Scripts/BuildingManager.cs" id="3_jmiuj"]
+[ext_resource type="Texture2D" uid="uid://dxkq7rmg087s1" path="res://Assets/Textures/Microwave.png" id="4_equle"]
 [ext_resource type="Script" path="res://Scripts/AudioManager.cs" id="4_ilrne"]
 [ext_resource type="Script" path="res://Scripts/EatScript.cs" id="5_3nf48"]
 [ext_resource type="Script" path="res://Scripts/ProjectilePool.cs" id="5_l3vmq"]
@@ -33,6 +35,10 @@ height = 512.0
 
 [node name="Node2D" type="Node2D"]
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(618, 121)
+texture = ExtResource("1_dfa6v")
+
 [node name="WorldBounds" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds"]
@@ -60,7 +66,8 @@ audioManager = NodePath("../AudioManager")
 maxHealth = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_hhwbw")
+position = Vector2(-237, 0)
+texture = ExtResource("2_kclco")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_prm7q")
@@ -72,7 +79,7 @@ microwaveManager = NodePath("MicrowaveManager")
 audioManager = NodePath("../../AudioManager")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Node2D"]
-texture = ExtResource("2_hhwbw")
+texture = ExtResource("4_equle")
 
 [node name="MicrowaveManager" parent="CharacterBody2D/Node2D" instance=ExtResource("14_t55xj")]
 
