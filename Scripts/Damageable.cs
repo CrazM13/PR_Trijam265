@@ -9,9 +9,9 @@ public partial class Damageable : CharacterBody2D {
 	public float MaxHealth { get => maxHealth; }
 
 	[Signal]
-	private delegate void OnDamageEventHandler();
+	public delegate void OnDamageEventHandler();
 
-	public void OnDamage(float damage) {
+	public void OnDamageReceived(float damage) {
 		Health -= damage;
 
 		EmitSignal(SignalName.OnDamage, damage);

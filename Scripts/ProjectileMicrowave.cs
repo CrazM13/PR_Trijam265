@@ -16,7 +16,7 @@ public partial class ProjectileMicrowave : AnimatableBody2D {
 			Pool.Despawn(this);
 
 			if (collision.GetCollider() is Damageable damageable) {
-				damageable.OnDamage(0.1f);
+				damageable.OnDamageReceived(0.1f);
 			}
 		}
 
